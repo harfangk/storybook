@@ -1,20 +1,20 @@
 # Storybook
 
-To start your Phoenix app:
+Every book at my home has special meaning to me. There's a book I got as
+a birthday gift; one my father bought and read when he was young man and gave
+me when I entered college; one I borrowed from a friend I can't get in contact
+anymore; and so on.
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `npm install`
-  * Start Phoenix endpoint with `mix phoenix.server`
+I wanted a place to record all those lovely but fleeting memories.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Current goals
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+* Record personal memories and thoughts for each book
+* Build and maintain own bookshelf
 
-## Learn more
+## Potential goals
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+* Automatic book addition through ISBN barcode recognition
+* Share stories about a particular book with others
+* Book lending network based on user bookshelves
+* Location-based book clubs for a particular book
