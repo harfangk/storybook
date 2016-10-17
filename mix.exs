@@ -19,7 +19,7 @@ defmodule Storybook.Mixfile do
   def application do
     [mod: {Storybook, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin, :ex_machina]]
+                    :phoenix_ecto, :postgrex, :comeonin]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,7 +39,7 @@ defmodule Storybook.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 2.0"},
-     {:ex_machina, "~> 1.0"}
+     {:ex_machina, "~> 1.0", only: :test}
    ]
   end
 

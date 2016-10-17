@@ -19,10 +19,13 @@ defmodule Storybook.User do
     |> cast(params, [:email, :username])
     |> validate_required([:email, :username])
     |> validate_length(:username, max: 40)
+    |> unique_constraint(:username)
+    |> unique_constraint(:email)
   end
 
   def registration_changeset(struct, params \\ %{}) do
     struct
+    |> changeset(params)
     |> cast(params, [:password])
     |> validate_required([:password])
     |> validate_length(:password, min: 6)
