@@ -2,7 +2,7 @@ defmodule Storybook.UserControllerTest do
   use Storybook.ConnCase
 
   alias Storybook.User
-  @valid_attrs %{email: "example@example.com", username: "jdk412", password: "thisispassword"}
+  @valid_attrs %{email: "example@example.com", username: "jdk412", password_hash: "thisispassword"}
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do
@@ -36,31 +36,5 @@ defmodule Storybook.UserControllerTest do
     assert_error_sent 404, fn ->
       get conn, user_path(conn, :show, -1)
     end
-  end
-
-  test "renders form for editing chosen resource", %{conn: conn} do
-    user = Repo.insert! %User{}
-    conn = get conn, user_path(conn, :edit, user)
-    assert html_response(conn, 200) =~ "Edit user"
-  end
-
-  test "updates chosen resource and redirects when data is valid", %{conn: conn} do
-    user = Repo.insert! %User{}
-    conn = put conn, user_path(conn, :update, user), user: @valid_attrs
-    assert redirected_to(conn) == user_path(conn, :show, user)
-    assert Repo.get_by(User, @valid_attrs)
-  end
-
-  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    user = Repo.insert! %User{}
-    conn = put conn, user_path(conn, :update, user), user: @invalid_attrs
-    assert html_response(conn, 200) =~ "Edit user"
-  end
-
-  test "deletes chosen resource", %{conn: conn} do
-    user = Repo.insert! %User{}
-    conn = delete conn, user_path(conn, :delete, user)
-    assert redirected_to(conn) == user_path(conn, :index)
-    refute Repo.get(User, user.id)
   end
 end
