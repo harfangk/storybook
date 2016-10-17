@@ -2,7 +2,7 @@ defmodule Storybook.UserControllerTest do
   use Storybook.ConnCase
 
   alias Storybook.User
-  @valid_attrs %{email: "example@example.com", username: "jdk412", password_hash: "thisispassword"}
+  @valid_attrs %{email: "example@example.com", username: "jdk412", password: "thisispassword"}
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do
