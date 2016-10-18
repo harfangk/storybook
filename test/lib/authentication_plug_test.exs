@@ -2,13 +2,12 @@ defmodule Storybook.AuthenticationPlugTest do
   use Storybook.ConnCase
   import Storybook.Factory
   alias Storybook.AuthenticationPlug
-  alias Storybook.User
   alias Storybook.Repo
 
   setup %{conn: conn} do
     conn =
       conn
-      |> bypass_through(:browser)
+      |> bypass_through(Storybook.Router, :browser)
       |> get("/")
     {:ok, %{conn: conn}}
   end
@@ -47,32 +46,38 @@ defmodule Storybook.AuthenticationPlugTest do
     user = build(:user)
     login_conn =
       conn
-      |> AuthenticationPlug.add_user_to_session(user)
-      |> send_resp(:ok, "")
+      |> AuthenticationPlug.add_user_to_session_and_conn(user)
 
     next_conn = get(login_conn, "/")
     assert get_session(next_conn, :user_id) == user.id
   end
 
-  test "logout removes the user from session and conn", %{conn: conn} do
-    assert false
+  test "drop_session removes the user from session and conn", %{conn: conn} do
+    user = build(:user)
+    login_conn =
+      conn
+      |> AuthenticationPlug.add_user_to_session_and_conn(user)
+
+    AuthenticationPlug.drop_session_and_remove_user(login_conn)
+
+    assert get_session(login_conn, :user_id) == nil
   end
 
-  test "login with a valid username and pass", %{conn: conn} do
-    user = insert(:user, %{email: "example@example.com", password: "password"})
+  test "login with a valid username and pass sets current_use", %{conn: conn} do
+    user = insert(:user, %{email: "example@example.com", password: nil})
     
-    {:ok, conn} = AuthenticationPlug.login_by_username_and_pass(conn, "example@example.com", "password", repo: Repo)  
+    {:ok, conn} = AuthenticationPlug.login_by_email_and_pass(conn, "example@example.com", "password", repo: Repo)  
 
     assert conn.assigns.current_user == user
   end
 
   test "login with a not found user gives error", %{conn: conn} do
-    assert {:error, :not_found, _conn} = AuthenticationPlug.login_by_username_and_pass(conn, "example@example.com", "password", repo: Repo)
+    assert {:error, :not_found, _conn} = AuthenticationPlug.login_by_email_and_pass(conn, "example@example.com", "password", repo: Repo)
   end
 
   test "login with password mismatch gives error", %{conn: conn} do
-    user = insert(:user, %{email: "example@example.com", password: "password"})
+    _user = insert(:user, %{email: "example@example.com", password: "password"})
 
-    assert {:error, :unauthorized, _conn} = Auth.login_by_username_and_pass(conn, "example@example.com", "wrong_password", repo: Repo)
+    assert {:error, :unauthorized, _conn} = AuthenticationPlug.login_by_email_and_pass(conn, "example@example.com", "wrong_password", repo: Repo)
   end
 end
