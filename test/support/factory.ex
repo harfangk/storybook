@@ -5,7 +5,8 @@ defmodule Storybook.Factory do
     %Storybook.User{
       username: "JSON Mraz",
       email: sequence(:email, &"email-#{&1}@example.com"),
-      password_hash: sequence(:password_hash, &"hashed_password#{&1}")
+      password: "password",
+      password_hash: Comeonin.Bcrypt.hashpwsalt("password") 
     }
   end
 end
