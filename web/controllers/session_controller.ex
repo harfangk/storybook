@@ -5,12 +5,12 @@ defmodule Storybook.SessionController do
     render conn, "new.html"
   end
 
-  def create(conn, %{"session" => %{"email" => email, "password" => password}}) do
-    case Storybook.AuthenticationPlug.login_by_email_and_pass(conn, email, password, repo: Repo) do
+  def create(conn, %{"session" => %{"email" => email, "password" => pass}}) do
+    case Storybook.AuthenticationPlug.login_by_email_and_pass(conn, email, pass, repo: Repo) do
       {:ok, conn} ->
         conn
         |> put_flash(:info, "Welcome back!")
-        |> redirect(to: user_path(conn, :show))
+        |> redirect(to: user_path(conn, :show, conn.assigns.current_user.id))
       {:error, _reason, conn} ->
         conn
         |> put_flash(:error, "Invalid username or password")

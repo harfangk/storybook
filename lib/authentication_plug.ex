@@ -31,12 +31,12 @@ defmodule Storybook.AuthenticationPlug do
     configure_session(conn, drop: true)
   end
 
-  def login_by_email_and_pass(conn, email, password, opts) do
+  def login_by_email_and_pass(conn, email, pass, opts) do
     repo = Keyword.fetch!(opts, :repo)
     user = repo.get_by(Storybook.User, email: email)
 
     cond do
-      user && checkpw(password, user.password_hash) ->
+      user && checkpw(pass, user.password_hash) ->
         {:ok, add_user_to_session_and_conn(conn, user)}
       user ->
         {:error, :unauthorized, conn}

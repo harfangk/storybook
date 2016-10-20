@@ -17,9 +17,9 @@ defmodule Storybook.Router do
   scope "/", Storybook do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
     resources "/users", UserController, only: [:index, :show, :new, :create]
     resources "/session", SessionController, only: [:new, :create, :delete]
+    get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
