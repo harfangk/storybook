@@ -1,5 +1,6 @@
 defmodule Storybook.UserControllerTest do
   use Storybook.ConnCase
+  import Storybook.Factory
 
   alias Storybook.User
   @valid_attrs %{email: "example@example.com", username: "jdk412", password: "thisispassword"}
@@ -18,7 +19,7 @@ defmodule Storybook.UserControllerTest do
   test "creates resource and redirects when data is valid", %{conn: conn} do
     conn = post conn, user_path(conn, :create), user: @valid_attrs
     assert redirected_to(conn) == user_path(conn, :index)
-    assert Repo.get_by(User, @valid_attrs)
+    assert Repo.get_by(User, email: @valid_attrs.email)
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
@@ -27,7 +28,7 @@ defmodule Storybook.UserControllerTest do
   end
 
   test "shows chosen resource", %{conn: conn} do
-    user = Repo.insert! %User{}
+    user = insert(:user)
     conn = get conn, user_path(conn, :show, user)
     assert html_response(conn, 200) =~ "Show user"
   end
