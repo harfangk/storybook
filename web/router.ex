@@ -17,7 +17,10 @@ defmodule Storybook.Router do
   scope "/", Storybook do
     pipe_through :browser # Use the default browser stack
 
-    resources "/users", UserController, only: [:index, :show, :new, :create]
+    resources "/users", UserController, only: [:index, :show, :new, :create] do
+      resources "/bookshelves", BookshelfController, only: [:index, :new, :create]
+    end
+    resources "/bookshelves", BookshelfController, only: [:show, :edit, :update, :destroy]
     resources "/session", SessionController, only: [:new, :create, :delete]
     get "/", PageController, :index
   end

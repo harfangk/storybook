@@ -1,0 +1,23 @@
+<h2>Show bookshelf</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @bookshelf.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @bookshelf.description %>
+  </li>
+
+  <li>
+    <strong>User:</strong>
+    <%= @bookshelf.user_id %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: bookshelf_path(@conn, :edit, @bookshelf) %>
+<%= link "Back", to: bookshelf_path(@conn, :index) %>

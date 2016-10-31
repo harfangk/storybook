@@ -1,0 +1,6 @@
+<h2>Edit bookshelf</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: bookshelf_path(@conn, :update, @bookshelf) %>
+
+<%= link "Back", to: bookshelf_path(@conn, :index) %>
