@@ -2,6 +2,7 @@ defmodule Storybook.AuthenticationPlug do
   import Plug.Conn
   import Phoenix.Controller
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
+  alias Storybook.Router.Helpers
 
   def init(opts) do
     Keyword.fetch!(opts, :repo)
@@ -12,9 +13,9 @@ defmodule Storybook.AuthenticationPlug do
 
     cond do
       user = conn.assigns[:current_user] ->
-        put_current_user_info(conn, user)
+        put_current_user_info_to_conn(conn, user)
       user = user_id && repo.get(Storybook.User, user_id) ->
-        put_current_user_info(conn, user)
+        put_current_user_info_to_conn(conn, user)
       true ->
         assign(conn, :current_user, nil)
     end
@@ -22,7 +23,7 @@ defmodule Storybook.AuthenticationPlug do
 
   def add_user_to_session_and_conn(conn, user) do
     conn
-    |> put_current_user_info(user)
+    |> put_current_user_info_to_conn(user)
     |> put_session(:user_id, user.id)
     |> configure_session(renew: true)
   end
@@ -52,12 +53,23 @@ defmodule Storybook.AuthenticationPlug do
     else
       conn
       |> put_flash(:error, "You must be logged in to access that page")
-      |> redirect(to: Storybook.Router.Helpers.page_path(conn, :index))
+      |> redirect(to: Helpers.page_path(conn, :index))
       |> halt()
     end
   end
 
-  defp put_current_user_info(conn, user) do
+  def require_same_user(conn, user_id, _opts) do
+    if conn.assigns[:current_user].id == user_id do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You're not authorized to access that page")
+      |> redirect(to: Helpers.page_path(conn, :index))
+      |> halt()
+    end
+  end
+
+  defp put_current_user_info_to_conn(conn, user) do
     token = Phoenix.Token.sign(conn, "user socket", user.id)
 
     conn
