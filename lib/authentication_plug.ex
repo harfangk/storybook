@@ -58,7 +58,7 @@ defmodule Storybook.AuthenticationPlug do
     end
   end
 
-  def require_same_user(conn, user_id, _opts) do
+  def require_authorization(conn, user_id) do
     if conn.assigns[:current_user].id == user_id do
       conn
     else

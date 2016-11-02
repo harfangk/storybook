@@ -36,6 +36,7 @@ defmodule Storybook.Web do
 
       import Storybook.Router.Helpers
       import Storybook.Gettext
+      import Storybook.AuthenticationPlug, only: [require_authentication: 2, require_authorization: 2]
     end
   end
 
