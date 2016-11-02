@@ -32,7 +32,7 @@ defmodule Storybook.BookshelfController do
       {:ok, _bookshelf} ->
         conn
         |> put_flash(:info, "Bookshelf created successfully.")
-        |> redirect(to: user_bookshelf_path(conn, user.id, :index))
+        |> redirect(to: user_bookshelf_path(conn, :index, user.id))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -83,6 +83,6 @@ defmodule Storybook.BookshelfController do
     Repo.delete!(bookshelf)
     conn
     |> put_flash(:info, "Bookshelf deleted successfully.")
-    |> redirect(to: user_bookshelf_path(conn, bookshelf.user.id, :index))
+    |> redirect(to: user_bookshelf_path(conn, :index, bookshelf.user_id))
   end
 end

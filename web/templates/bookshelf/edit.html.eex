@@ -3,4 +3,4 @@
 <%= render "form.html", changeset: @changeset,
                         action: bookshelf_path(@conn, :update, @bookshelf) %>
 
-<%= link "Back", to: bookshelf_path(@conn, :index) %>
+<%= link "Back", to: user_bookshelf_path(@conn, :index, @conn.assigns.current_user.id) %>
