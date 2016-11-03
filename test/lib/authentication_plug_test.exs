@@ -42,6 +42,27 @@ defmodule Storybook.AuthenticationPlugTest do
     refute conn.halted()
   end
 
+  test "require_authorization halts conn when current_user does not equal user_id", %{conn: conn} do
+    user = build(:user)
+    user2 = build(:user)
+    conn =
+      conn
+      |> assign(:current_user, user)
+      |> AuthenticationPlug.require_authorization(user2.id)
+    
+    refute conn.halted()
+  end
+
+  test "require_authorization halts conn when current_user equals user_id", %{conn: conn} do
+    user = build(:user)
+    conn =
+      conn
+      |> assign(:current_user, user)
+      |> AuthenticationPlug.require_authorization(user.id)
+    
+    refute conn.halted()
+  end
+
   test "add_user_to_session_and_conn puts the user in the session and conn", %{conn: conn} do
     user = build(:user)
     login_conn =
