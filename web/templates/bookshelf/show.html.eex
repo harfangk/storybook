@@ -20,4 +20,4 @@
 </ul>
 
 <%= link "Edit", to: bookshelf_path(@conn, :edit, @bookshelf) %>
-<%= link "Back", to: user_bookshelf_path(@conn, :index, @conn.assigns.current_user.id) %>
+<%= link "Back", to: user_bookshelf_path(@conn, :index, @bookshelf.user_id) %>

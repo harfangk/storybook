@@ -9,4 +9,12 @@ defmodule Storybook.Factory do
       password_hash: Comeonin.Bcrypt.hashpwsalt("password") 
     }
   end
+
+  def bookshelf_factory do
+    %Storybook.Bookshelf{
+      name: sequence(:name, &"name-#{&1}"), 
+      description: sequence(:description, &"description-#{&1}"),
+      user: build(:user)
+    }
+  end
 end

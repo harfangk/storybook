@@ -27,4 +27,6 @@
   </tbody>
 </table>
 
-<%= link "New bookshelf", to: user_bookshelf_path(@conn, :new, @conn.assigns.current_user) %>
+<%= if @conn.assigns.current_user do %>
+  <%= link "New bookshelf", to: user_bookshelf_path(@conn, :new, @conn.assigns.current_user) %>
+<% end %>
