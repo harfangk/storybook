@@ -11,6 +11,8 @@ defmodule Storybook.Book do
     field :isbn13, :string
     field :image_thumbnail, :string
     field :image_regular, :string
+    many_to_many :bookshelves, Storybook.Bookshelf, join_through: Storybook.BookshelfBook
+    many_to_many :users, Storybook.User, join_through: Storybook.UserBook
 
     timestamps()
   end

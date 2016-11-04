@@ -5,6 +5,7 @@ defmodule Storybook.Bookshelf do
     field :name, :string
     field :description, :string
     belongs_to :user, Storybook.User
+    many_to_many :books, Storybook.Book, join_through: Storybook.BookshelfBook
 
     timestamps()
   end

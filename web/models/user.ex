@@ -8,6 +8,7 @@ defmodule Storybook.User do
     field :password, :string, virtual: true
     field :password_hash, :string
     has_many :bookshelves, Storybook.Bookshelf
+    many_to_many :books, Storybook.Book, join_through: Storybook.UserBook
 
     timestamps()
   end
