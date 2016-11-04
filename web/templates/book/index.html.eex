@@ -21,7 +21,7 @@
     <tr>
       <td><%= book.title %></td>
       <td><%= book.authors %></td>
-      <td><%= book.Publisher %></td>
+      <td><%= book.publisher %></td>
       <td><%= book.published_date %></td>
       <td><%= book.description %></td>
       <td><%= book.isbn10 %></td>

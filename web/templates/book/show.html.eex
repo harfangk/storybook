@@ -14,7 +14,7 @@
 
   <li>
     <strong>Publisher:</strong>
-    <%= @book.Publisher %>
+    <%= @book.publisher %>
   </li>
 
   <li>
