@@ -31,8 +31,6 @@
 
       <td class="text-right">
         <%= link "Show", to: book_path(@conn, :show, book), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: book_path(@conn, :edit, book), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: book_path(@conn, :delete, book), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
     </tr>
 <% end %>

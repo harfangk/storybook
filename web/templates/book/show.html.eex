@@ -49,5 +49,4 @@
 
 </ul>
 
-<%= link "Edit", to: book_path(@conn, :edit, @book) %>
 <%= link "Back", to: book_path(@conn, :index) %>

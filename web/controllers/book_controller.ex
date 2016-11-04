@@ -30,36 +30,4 @@ defmodule Storybook.BookController do
     book = Repo.get!(Book, id)
     render(conn, "show.html", book: book)
   end
-
-  def edit(conn, %{"id" => id}) do
-    book = Repo.get!(Book, id)
-    changeset = Book.changeset(book)
-    render(conn, "edit.html", book: book, changeset: changeset)
-  end
-
-  def update(conn, %{"id" => id, "book" => book_params}) do
-    book = Repo.get!(Book, id)
-    changeset = Book.changeset(book, book_params)
-
-    case Repo.update(changeset) do
-      {:ok, book} ->
-        conn
-        |> put_flash(:info, "Book updated successfully.")
-        |> redirect(to: book_path(conn, :show, book))
-      {:error, changeset} ->
-        render(conn, "edit.html", book: book, changeset: changeset)
-    end
-  end
-
-  def delete(conn, %{"id" => id}) do
-    book = Repo.get!(Book, id)
-
-    # Here we use delete! (with a bang) because we expect
-    # it to always work (and if it does not, it will raise).
-    Repo.delete!(book)
-
-    conn
-    |> put_flash(:info, "Book deleted successfully.")
-    |> redirect(to: book_path(conn, :index))
-  end
 end
