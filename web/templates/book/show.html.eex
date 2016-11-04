@@ -1,0 +1,53 @@
+<h2>Show book</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @book.title %>
+  </li>
+
+  <li>
+    <strong>Authors:</strong>
+    <%= @book.authors %>
+  </li>
+
+  <li>
+    <strong>Publisher:</strong>
+    <%= @book.Publisher %>
+  </li>
+
+  <li>
+    <strong>Published date:</strong>
+    <%= @book.published_date %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @book.description %>
+  </li>
+
+  <li>
+    <strong>Isbn10:</strong>
+    <%= @book.isbn10 %>
+  </li>
+
+  <li>
+    <strong>Isbn13:</strong>
+    <%= @book.isbn13 %>
+  </li>
+
+  <li>
+    <strong>Image thumbnail:</strong>
+    <%= @book.image_thumbnail %>
+  </li>
+
+  <li>
+    <strong>Image regular:</strong>
+    <%= @book.image_regular %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: book_path(@conn, :edit, @book) %>
+<%= link "Back", to: book_path(@conn, :index) %>

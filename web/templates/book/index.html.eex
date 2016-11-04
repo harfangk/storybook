@@ -1,0 +1,42 @@
+<h2>Listing books</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Authors</th>
+      <th>Publisher</th>
+      <th>Published date</th>
+      <th>Description</th>
+      <th>Isbn10</th>
+      <th>Isbn13</th>
+      <th>Image thumbnail</th>
+      <th>Image regular</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for book <- @books do %>
+    <tr>
+      <td><%= book.title %></td>
+      <td><%= book.authors %></td>
+      <td><%= book.Publisher %></td>
+      <td><%= book.published_date %></td>
+      <td><%= book.description %></td>
+      <td><%= book.isbn10 %></td>
+      <td><%= book.isbn13 %></td>
+      <td><%= book.image_thumbnail %></td>
+      <td><%= book.image_regular %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: book_path(@conn, :show, book), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: book_path(@conn, :edit, book), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: book_path(@conn, :delete, book), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New book", to: book_path(@conn, :new) %>

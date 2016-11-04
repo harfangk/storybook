@@ -1,0 +1,59 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :title, class: "control-label" %>
+    <%= text_input f, :title, class: "form-control" %>
+    <%= error_tag f, :title %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :Publisher, class: "control-label" %>
+    <%= text_input f, :Publisher, class: "form-control" %>
+    <%= error_tag f, :Publisher %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :published_date, class: "control-label" %>
+    <%= text_input f, :published_date, class: "form-control" %>
+    <%= error_tag f, :published_date %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :description, class: "control-label" %>
+    <%= text_input f, :description, class: "form-control" %>
+    <%= error_tag f, :description %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :isbn10, class: "control-label" %>
+    <%= text_input f, :isbn10, class: "form-control" %>
+    <%= error_tag f, :isbn10 %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :isbn13, class: "control-label" %>
+    <%= text_input f, :isbn13, class: "form-control" %>
+    <%= error_tag f, :isbn13 %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :image_thumbnail, class: "control-label" %>
+    <%= text_input f, :image_thumbnail, class: "form-control" %>
+    <%= error_tag f, :image_thumbnail %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :image_regular, class: "control-label" %>
+    <%= text_input f, :image_regular, class: "form-control" %>
+    <%= error_tag f, :image_regular %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

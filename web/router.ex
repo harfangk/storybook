@@ -21,6 +21,7 @@ defmodule Storybook.Router do
       resources "/bookshelves", BookshelfController, only: [:index, :new, :create]
     end
     resources "/bookshelves", BookshelfController, only: [:show, :edit, :update, :delete]
+    resources "/books", BookController
     resources "/session", SessionController, only: [:new, :create, :delete]
     get "/", PageController, :index
   end
