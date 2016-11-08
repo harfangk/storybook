@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Naver Open API - book_adv ::''</title>
+        <link>http://search.naver.com</link>
+        <description>Naver Search Result</description>
+        <lastBuildDate>Sat, 05 Nov 2016 14:42:29 +0900</lastBuildDate>
+        <total>1</total>
+        <start>1</start>
+        <display>1</display>
+        <item>
+            <title>Introduction to Algorithms</title>
+            <link>http://openapi.naver.com/l?AAAMsoSk2zzSgpKVA1dlQ1cgOipPz8bL28xLLUIr3k/FyoQEoSlBGfklqSmJmjV5AB1OGWlJmiauxibmFkYGlmqVZia2hibmFsZGJqYmlkZKyWa2sUmuUbnl2QFhRmrmrkVGBZAjQlrzDVy7+8LDStJBuoFwAamd/rgAAAAA==</link>
+            <image>http://bookthumb.phinf.naver.net/cover/078/209/07820969.jpg?type=m1&amp;udate=20150715</image>
+            <author>토머스 코멘|찰스 레이서손|로날드 리베스트|클리포드 스타인</author>
+            <price>47000</price>
+            <discount>44650</discount>
+            <publisher>한빛아카데미</publisher>
+            <pubdate>20140630</pubdate>
+            <isbn>1156641136 9791156641131</isbn>
+            <description>개정 3판에서는 많은 변화를 통해 완성도가 한층 강화되었다. 먼저 반 엠데 보아스 트리와 멀티스레드를 다루는 장이 추가되고, 점화식이 분할정복 장으로 정비되었다. 그리고 동적 프로그래밍과 그리드 알고리즘에 개선된 방법이 추가되었고, 플로우 네트워크에도 새로운 개념이 도입되었다. 이외에도 전체... </description>
+        </item>
+    </channel>
+</rss>
